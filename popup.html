@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Slop Detector</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 400px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .status.loading {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.ready {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .progress {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+            margin-bottom: 10px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .result.ai {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+        }
+
+        .result.human {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+        }
+
+        .result-label {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .result.ai .result-label {
+            color: #e65100;
+        }
+
+        .result.human .result-label {
+            color: #2e7d32;
+        }
+
+        .result-text {
+            font-size: 13px;
+            color: #555;
+        }
+
+        .tip {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .tip strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AI Slop Detector</h1>
+        <p class="subtitle">Powered by fine-tuned Gemma 270M</p>
+
+        <div id="status" class="status loading">Initializing model...</div>
+
+        <div id="progress" class="progress">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <textarea 
+            id="textInput" 
+            placeholder="Paste text here to check if it's AI-generated..."
+            disabled
+        ></textarea>
+
+        <button id="analyzeBtn" disabled>Analyze Text</button>
+
+        <div id="result" class="result">
+            <div class="result-label"></div>
+            <div class="result-text"></div>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Tip:</strong> Select any text on a webpage, right-click, and choose "Check if AI Slop" for instant analysis!
+        </div>
+    </div>
+
+    <script type="module" src="popup-bundle.js"></script>
+</body>
+</html>

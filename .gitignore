@@ -1,0 +1,21 @@
+node_modules/
+package-lock.json
+
+# Build files (we'll commit popup-bundle.js since it's needed)
+# But ignore other build artifacts
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.local

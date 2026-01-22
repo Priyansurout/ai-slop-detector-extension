@@ -1,0 +1,20 @@
+{
+  "name": "webllm-webex",
+  "version": "1.0.0",
+  "description": "A Chrome extension powered by your fine-tuned Gemma 270M model to detect AI-generated text vs human-written content.",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild popup.js --bundle --outfile=popup-bundle.js --format=esm"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@mlc-ai/web-llm": "^0.2.80"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.2"
+  }
+}
