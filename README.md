@@ -57,8 +57,6 @@ const MODEL_CONFIG = {
 };
 ```
 
-**Important:** Replace `YOUR_USERNAME` with your actual HuggingFace username.
-
 After updating, rebuild:
 
 ```bash
